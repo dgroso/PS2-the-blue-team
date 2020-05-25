@@ -1,0 +1,28 @@
+#!/bin/bash
+
+####DEPARTURES####
+#Extract the departure and departure delay columns from the data
+cut -d ',' -f 3,13 flights.May2017-Apr2018.csv > Departures.txt
+#extract the lines that contain GNV
+grep 'GNV' Departures.txt > DepGNV.txt
+#count how many lines there are total i.e how many flights departed from GNV
+wc -l DepGNV.txt
+#count how many lines have a 1.00 i.e how many flights were late departing from GNV and saves it as variable D
+D=`grep -c '1.00' DepGNV.txt`
+
+####ARRIVALS#####
+#Extract the arrival and arrival delay columns from the data 
+cut -d ',' -f 7,16 flights.May2017-Apr2018.csv > Arrivals.txt
+#extract the lines that contain GNV
+grep 'GNV' Arrivals.txt > ArrGNV.txt
+#count how many lines there are total i.e how many flights arrived to GNV
+wc -l ArrGNV.txt
+#count how many lines have a 1.00 i.e how many flights were late arriving to GNV and saves it as variable A
+A=`grep -c '1.00' ArrGNV.txt`
+
+#Adds variables A and D and prints to give the final answer to question 1
+final=$((D+A))
+echo $final 
+####DELETE THE FILES####
+rm Departures.txt Arrivals.txt DepGNV.txt ArrGNV.txt
+

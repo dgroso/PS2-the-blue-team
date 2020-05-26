@@ -1,0 +1,16 @@
+cut -d ',' -f 3 flights.May2017-Apr2018.csv > departures.txt
+egrep '\W{1}\w{3}\W{1}' departures.txt > departures2.txt
+sort departures2.txt | uniq > totaluniq.txt
+# sorts unique airline codes of all departures, adds sorted output into compiled totaluniq.txt file
+
+cut -d ',' -f 7 flights.May2017-Apr2018.csv > arrivals.txt
+egrep '\W{1}\w{3}\W{1}' arrivals.txt > arrivals2.txt
+sort arrivals2.txt | uniq >> totaluniq.txt
+# sorts unique airline codes of all arrivals, appends arrivals.txt data into compiled totaluniq.txt file
+
+sort totaluniq.txt | uniq
+# prints all unique airline codes (departures and arrivals)
+
+rm arrivals.txt arrivals2.txt departures.txt departures2.txt totaluniq.txt
+# removes extraneous created files
+

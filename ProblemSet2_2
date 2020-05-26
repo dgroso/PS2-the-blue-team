@@ -1,0 +1,63 @@
+#!/bin/bash
+
+############ GAINESVILLE TO ATLANTA DATA #####################
+echo GNV TO ATL
+
+cut -d "," -f 3,7,13,16,24 flights.May2017-Apr2018.csv > data2_2.txt 
+grep '"GNV","ATL"' data2_2.txt > GNV_ATL.txt
+#counts the number of flights from GNV to ATL 
+echo Total Flights: 
+wc -l GNV_ATL.txt
+#counts the number of flights delayed 
+echo Flights Delayed:
+grep -c '1.00' GNV_ATL.txt
+cut -d "," -f 5 GNV_ATL.txt > ATLweather.txt
+#counts flights delayed due to weather 
+echo Weather Delayed Flights:
+egrep -c '^[1-9]+[0-9]*' ATLweather.txt
+#removes extra files 
+rm GNV_ATL.txt ATLweather.txt
+
+
+
+############ GAINESVILLE TO CLT DATA ####################
+echo GNV TO CLT
+
+grep '"GNV","CLT"' data2_2.txt > GNV_CLT.txt
+#counts the number of flights from GNV to CTL 
+echo Total Flights: 
+wc -l GNV_CLT.txt
+#counts the number of flights delayed 
+echo Flights Delayed:
+grep -c '1.00' GNV_CLT.txt
+cut -d "," -f 5 GNV_CLT.txt > CLTweather.txt
+#counts flights delayed due to weather 
+echo Weather Delayed Flights:
+egrep -c '^[1-9]+[0-9]*' CLTweather.txt
+#removes extra files 
+rm GNV_CLT.txt CLTweather.txt
+
+
+
+
+
+############ GAINESVILLE TO MIA DATA ####################
+echo GNV TO MIA
+
+grep '"GNV","MIA"' data2_2.txt > GNV_MIA.txt
+#counts the number of flights from GNV to MIA 
+echo Total Flights: 
+wc -l GNV_MIA.txt
+#counts the number of flights delayed 
+echo Flights Delayed:
+grep -c '1.00' GNV_MIA.txt
+cut -d "," -f 5 GNV_MIA.txt > MIAweather.txt
+#counts flights delayed due to weather 
+echo Weather Delayed Flights:
+egrep -c '^[1-9]+[0-9]*' MIAweather.txt
+#removes extra files 
+rm GNV_MIA.txt MIAweather.txt data2_2.txt
+
+
+
+

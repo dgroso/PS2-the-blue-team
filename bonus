@@ -1,0 +1,31 @@
+#!/bin/bash
+
+#cut files with airport codes + data 
+cut -d ',' -f 3,13 flights.May2017-Apr2018.csv > Departures.txt
+cut -d ',' -f 7,16 flights.May2017-Apr2018.csv > Arrivals.txt
+#cut files with city,state + data 
+cut -d ',' -f 4,5,13 flights.May2017-Apr2018.csv > Departures2.txt 
+cut -d ',' -f 8,9,16 flights.May2017-Apr2018.csv > Arrivals2.txt 
+
+#ask for input and search files for lines containing the input 
+echo -n "Enter an airport code or the city/state name city (formatted '[city name], [state name]'" 
+
+read x
+grep $x Departures.txt > DepCity.txt
+grep $x Arrivals.txt > ArrCity.txt
+grep $x Departures2.txt > DepCity2.txt 
+grep $x Arrivals2.txt > ArrCity2.txt 
+echo "Number of flights delayed by 15+ minutes departing/ arriving $x airport:" 
+
+#counts the lines of each file that contains the airport code or city/state 
+D=`grep -c '1.00' DepCity.txt`
+A=`grep -c '1.00' ArrCity.txt`
+D2=`grep -c '1.00' DepCity2.txt`
+A2=`grep -c '1.00' ArrCity2.txt`
+
+final=$((D+A+D2+A2))
+echo $final 
+
+#removes extra files 
+rm Departures.txt Arrivals.txt Departures2.txt Arrivals2.txt DepCity.txt ArrCity.txt DepCity2.txt ArrCity2.txt 
+

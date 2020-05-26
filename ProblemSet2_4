@@ -1,0 +1,16 @@
+cut -d "," -f 4,5 flights.May2017-Apr2018.csv > depcities.txt
+grep 'FL' depcities.txt > depflorida.txt
+sort depflorida.txt | uniq > totalflorida.txt
+# sorts all FL cities with departure flights  
+
+cut -d "," -f 8,9 flights.May2017-Apr2018.csv > arrcities.txt
+grep 'FL' arrcities.txt > arrflorida.txt
+sort arrflorida.txt | uniq >> totalflorida.txt
+# sorts all FL cities with arrival flights
+
+sort totalflorida.txt | uniq
+# sorts all FL cities with departures/arrivals from FL 
+
+rm depcities.txt depflorida.txt totalflorida.txt arrcities.txt arrflorida.txt
+
+

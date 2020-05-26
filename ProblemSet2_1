@@ -22,6 +22,7 @@ A=`grep -c '1.00' ArrGNV.txt`
 
 #Adds variables A and D and prints to give the final answer to question 1
 final=$((D+A))
+echo Number of flights that were delayed more than 15 minutes into or out of Gainesville, FL:
 echo $final 
 ####DELETE THE FILES####
 rm Departures.txt Arrivals.txt DepGNV.txt ArrGNV.txt
